@@ -1,0 +1,1 @@
+export const mapRootElementId = "simple-map-root";
