@@ -1,9 +1,12 @@
 import L from "leaflet";
 
-import { mapRootElementId } from "./constants/mapRootElementId.const";
+import {
+  londonMapRootElementId,
+  kyivMapRootElementId,
+} from "./constants/mapRootElementId.const";
 
-export function createSimpleMap() {
-  let map = L.map(mapRootElementId).setView([51.506, -0.09], 13);
+function createMap(latLongExpression, parentElementId) {1
+  let map = L.map(parentElementId).setView(latLongExpression, 13);
 
   // Map basis
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -11,6 +14,12 @@ export function createSimpleMap() {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
+
+  return map;
+}
+
+export function createLondonMap() {
+  let map = createMap([51.506, -0.09], londonMapRootElementId);
 
   let marker = L.marker([51.5, -0.09]).addTo(map);
 
@@ -42,4 +51,8 @@ export function createSimpleMap() {
   }
 
   map.on("click", onMapClick);
+}
+
+export function createKyivMap() {
+    let map = createMap([50.45004, 30.52513], kyivMapRootElementId);
 }

@@ -1,1 +1,2 @@
-export const mapRootElementId = "simple-map-root";
+export const londonMapRootElementId = "london-map-root";
+export const kyivMapRootElementId = "kyiv-map-root";

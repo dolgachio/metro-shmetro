@@ -4,6 +4,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./map.css";
 
-import { createSimpleMap } from "./createMap";
+import { createLondonMap, createKyivMap } from "./createMap";
 
-createSimpleMap();
+createLondonMap();
+createKyivMap();
