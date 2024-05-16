@@ -3,20 +3,8 @@ import L from "leaflet";
 import {
   londonMapRootElementId,
   kyivMapRootElementId,
-} from "./constants/mapRootElementId.const";
-
-function createMap(latLongExpression, parentElementId) {1
-  let map = L.map(parentElementId).setView(latLongExpression, 13);
-
-  // Map basis
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map);
-
-  return map;
-}
+} from "../constants/mapRootElementId.const";
+import { createMap } from "../shared/createMap";
 
 export function createLondonMap() {
   let map = createMap([51.506, -0.09], londonMapRootElementId);
@@ -51,8 +39,4 @@ export function createLondonMap() {
   }
 
   map.on("click", onMapClick);
-}
-
-export function createKyivMap() {
-    let map = createMap([50.45004, 30.52513], kyivMapRootElementId);
 }

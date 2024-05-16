@@ -1,0 +1,36 @@
+import L from "leaflet";
+
+import { kyivMetroMapRootElementId } from "../../constants/mapRootElementId.const";
+import { createMap } from "../../shared/createMap";
+import { kyivMetroRedBranchStations } from "./redBranchCoordinates";
+import { createKashtanMarker } from "./createKashtanMarker";
+import { allTileLayers } from "../../shared/tileLayers";
+import { kyivCenterCoordinates } from "./kyivCenterCoordinates";
+
+function createRedBranchLayerGroup() {
+  let redBranchStationMarkers = kyivMetroRedBranchStations.map(
+    ([stationName, coordinates]) => {
+      let marker = L.marker(coordinates, { title: stationName });
+      marker.bindPopup(stationName);
+
+      return marker;
+    }
+  );
+
+  return L.layerGroup(redBranchStationMarkers);
+}
+
+export function createKyivMetroMap() {
+  let map = createMap(kyivCenterCoordinates, kyivMetroMapRootElementId, 11);
+
+  let redBranchStationsLayerGroup = createRedBranchLayerGroup();
+  let kashtanMarker = createKashtanMarker();
+
+  let baseLayers = allTileLayers;
+  let overlays = {
+    "Кафе Каштан": kashtanMarker,
+    "Червона гілка Метро": redBranchStationsLayerGroup
+  }
+
+  L.control.layers(baseLayers, overlays).addTo(map);
+}
