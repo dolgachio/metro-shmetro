@@ -3,7 +3,7 @@ import L from "leaflet";
 import { kyivMapRootElementId } from "../constants/mapRootElementId.const";
 import { createMap } from "../shared/createMap";
 import { createKashtanMarker } from "./kyivMetro/createKashtanMarker";
-import { kyivCenterCoordinates } from "./kyivCenterCoordinates";
+import { kyivCenterCoordinates } from "./kyivMetro/kyivCenterCoordinates";
 
 export function createKyivMap() {
   let map = createMap(kyivCenterCoordinates, kyivMapRootElementId);

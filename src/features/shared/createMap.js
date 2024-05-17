@@ -1,11 +1,13 @@
 import L from "leaflet";
-import { mainTileLayers } from "./tileLayers";
+import { createMainTileLayer } from "./tileLayers";
 
 export function createMap(latLongExpression, parentElementId, zoom = 13) {
   let map = L.map(parentElementId).setView(latLongExpression, zoom);
 
+  let mainTileLayer = createMainTileLayer();
+  
   // Map basis
-  mainTileLayers.addTo(map);
+  mainTileLayer.addTo(map);
 
   return map;
 }
